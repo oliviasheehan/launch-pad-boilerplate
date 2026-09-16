@@ -48,6 +48,7 @@ services:
       - internal
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=launchpad_web"
       - "traefik.http.routers.app.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.app.entrypoints=websecure"
       - "traefik.http.routers.app.tls.certresolver=letsencrypt"
@@ -55,7 +56,9 @@ services:
 
 networks:
   web:
+    name: launchpad_web
   internal:
+    name: launchpad_internal
 
 volumes:
   postgres_data:
